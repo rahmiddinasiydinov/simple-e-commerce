@@ -1,0 +1,33 @@
+
+*, ::before, ::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+ul{
+    list-style-type:none ;
+}
+
+a{
+    text-decoration: none;
+}
+
+main{
+    display: grid;
+    row-gap: 5%;
+    grid-template-columns: 1fr 5fr;
+    position: relative;
+    top: 50px;
+    height: calc(100vh - 50px);
+    overflow: hidden;
+}
+
+.contents{
+    padding: 20px 30px;
+}
