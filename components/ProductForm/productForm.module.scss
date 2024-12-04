@@ -1,0 +1,52 @@
+.form{
+    width: 85%;
+    margin: 0 auto;
+}
+
+.label{
+    font-size: 1.8rem;
+    margin-top: 30px;
+    display: block;
+}
+
+.label::before{
+    content: "*";
+    margin-right: 2px;
+    color: #FF0000;
+}
+
+.input{
+    display: block;
+    padding: 10px;
+    width: 100%;
+    margin-top: 5px;
+    font-size: 1.8rem;
+}
+
+.buttons{
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.buttons > button{
+    display: block;
+    padding: 10px 15px;
+    min-width: 150px;
+    font-size: 1.8rem;
+    border: 1px solid #000000;
+}
+
+.saveBtn{
+    background-color: #97FF8F;
+}
+
+.cancelBtn{
+    background-color: #FF8F91;
+}
+
+.textarea{
+    @extend .input;
+    max-width: 100%;
+    min-width: 100%;
+}

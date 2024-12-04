@@ -1,9 +1,18 @@
+"use client"
 import Button from '@/components/CreateButton/Button'
 import Head from 'next/head'
 import React from 'react'
 import styles from "./categories.module.scss"
+import { useModalStatusContext } from '@/context/modal'
 
 function Categories() {
+    const { setModalStatus, setModalType} = useModalStatusContext();
+
+    const onClick = () => {
+        setModalType("category");
+        setModalStatus(true)
+    }
+
     return (
         <>
             <Head>
@@ -12,7 +21,7 @@ function Categories() {
                 <title>Test Project</title>
             </Head>
             <div className={styles.wrapper}>
-                <Button text="Создать категорию"/>
+                <Button text="Создать категорию" onClick={onClick}/>
             </div>
         </>
     )
