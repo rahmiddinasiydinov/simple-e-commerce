@@ -4,10 +4,11 @@
     background-color: #6BE1FF;
     font-size: 1.8rem; 
     position: absolute;
-    top: 30px;
+    top: -130px;
     right: 40px;
     cursor: pointer;
-    
+    pointer-events: auto;
+
     &:hover{
         background-color: #0BD1FF;
     }

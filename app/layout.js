@@ -6,6 +6,8 @@ import Header from "@/components/Header/Header";
 import Navbar from "@/components/Navbar/Navbar";
 import { ModalStatusProvider } from "@/context/modal";
 import Modal from "@/components/Modal/Modal";
+import { CategoriesProvider } from "@/context/categories";
+import { EditDataProvider } from "@/context/editData";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,16 +32,20 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ModalStatusProvider>
-        <Modal/>
-          <Header />
-          <main>
-            <nav className="navbar">
-              <Navbar />
-            </nav>
-            <div className="contents">
-              {children}
-            </div>
-          </main>
+          <CategoriesProvider>
+            <EditDataProvider>
+              <Modal />
+              <Header />
+              <main>
+                <nav className="navbar">
+                  <Navbar />
+                </nav>
+                <div className="contents">
+                  {children}
+                </div>
+              </main>
+            </EditDataProvider>
+          </CategoriesProvider>
         </ModalStatusProvider>
       </body>
     </html>

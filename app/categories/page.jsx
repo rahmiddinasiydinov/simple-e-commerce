@@ -1,16 +1,20 @@
 "use client"
 import Button from '@/components/CreateButton/Button'
 import Head from 'next/head'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./categories.module.scss"
 import { useModalStatusContext } from '@/context/modal'
+import CategoriesTable from '@/components/CategoriesTable/CategoriesTable'
+import { useEditDataContext } from '@/context/editData'
+
 
 function Categories() {
     const { setModalStatus, setModalType} = useModalStatusContext();
-
+    const {setCurrentData} = useEditDataContext()
     const onClick = () => {
         setModalType("category");
-        setModalStatus(true)
+        setModalStatus(true);
+        setCurrentData({type:"category"})
     }
 
     return (
@@ -22,6 +26,7 @@ function Categories() {
             </Head>
             <div className={styles.wrapper}>
                 <Button text="Создать категорию" onClick={onClick}/>
+                <CategoriesTable/>
             </div>
         </>
     )
