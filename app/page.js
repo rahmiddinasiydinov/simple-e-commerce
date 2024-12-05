@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Home() {
   const { cart } = useCartContext();
-  let cartNumber = cart.length
+  let cartNumber = cart.length || 0;
 
   return (
     <div className={styles.wrapper}>

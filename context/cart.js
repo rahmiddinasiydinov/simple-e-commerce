@@ -7,7 +7,7 @@ export function CartProvider({ children }) {
     useEffect(() => {
         if (typeof window !== 'undefined' && window.localStorage) {
             const currentCart = JSON.parse(localStorage.getItem("cart"));
-            setCart(currentCart);
+            setCart(currentCart | []);
         }
     }, [])
     const updateCart = (newCart) => {
