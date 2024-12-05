@@ -15,9 +15,7 @@ function CategoriesForm() {
   useEffect(() => {
     if (modalType == "category-edit" && isModalOpen) {
       setInput(currentData.name);
-    } else (
-        setInput("")
-    )
+    } else setInput("");
   }, [currentData, modalType]);
 
   const hideMenu = () => {
@@ -45,20 +43,27 @@ function CategoriesForm() {
       })
         .then((res) => res.json())
         .then((data) => {
-          setCategories(data.data);
+          console.log(data);
+          if (data.data) {
+            setCategories(data.data);
+          }
         })
         .catch((e) => console.log(e));
     else if (currentData.type === "category-edit") {
-        fetch("/api/updateCategories", {
+      fetch("/api/updateCategories", {
         method: "PUT",
-        body: JSON.stringify({id:currentData.id, name: input, edited:true }),
+        body: JSON.stringify({ id: currentData.id, name: input, edited: true }),
         headers: {
           "Content-Type": "application/json",
         },
       })
         .then((res) => res.json())
         .then((data) => {
-          setCategories(data.data);
+          console.log(data);
+          
+          if (data.data) {
+            setCategories(data.data);
+          }
         })
         .catch((e) => console.log(e));
     }

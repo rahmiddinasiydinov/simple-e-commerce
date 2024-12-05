@@ -10,7 +10,9 @@ export function CategoriesProvider({ children }) {
         fetch("/api/getCategories")
             .then(res => res.json())
             .then(fetchedData => {
-                setCategories(fetchedData);
+                setCategories(fetchedData.data);
+                console.log(fetchedData);
+                
 
             })
             .catch((error) => {
