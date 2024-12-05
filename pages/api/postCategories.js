@@ -4,7 +4,7 @@ import path from "path";
 
 export default function handler(req, res) {
     const data = req.body;
-    const filePath = path.join(process.cwd(), 'db', 'categories.json');
+    const filePath = path.resolve(process.cwd(), 'db', 'categories.json');
     try {
         const fileData = fs.readFileSync(filePath, 'utf-8');
         const jsonData = JSON.parse(fileData);
