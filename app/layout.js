@@ -8,6 +8,8 @@ import { ModalStatusProvider } from "@/context/modal";
 import Modal from "@/components/Modal/Modal";
 import { CategoriesProvider } from "@/context/categories";
 import { EditDataProvider } from "@/context/editData";
+import { ProductsProvider } from "@/context/product";
+import { CartProvider } from "@/context/cart";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -33,18 +35,22 @@ export default function RootLayout({ children }) {
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <ModalStatusProvider>
           <CategoriesProvider>
-            <EditDataProvider>
-              <Modal />
-              <Header />
-              <main>
-                <nav className="navbar">
-                  <Navbar />
-                </nav>
-                <div className="contents">
-                  {children}
-                </div>
-              </main>
-            </EditDataProvider>
+            <ProductsProvider>
+              <CartProvider>
+                <EditDataProvider>
+                  <Modal />
+                  <Header />
+                  <main>
+                    <nav className="navbar">
+                      <Navbar />
+                    </nav>
+                    <div className="contents">
+                      {children}
+                    </div>
+                  </main>
+                </EditDataProvider>
+              </CartProvider>
+            </ProductsProvider>
           </CategoriesProvider>
         </ModalStatusProvider>
       </body>

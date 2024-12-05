@@ -1,0 +1,50 @@
+.list{
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.item{
+    width: 270px;
+    margin-bottom: 20px;
+    border: 1px solid #000000;
+    overflow: hidden;
+    h2{
+        margin-top: 20px;
+        font-size: 2rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 10px;
+    }
+
+    p{
+        margin-top: 5px;
+        font-size: 1.6rem;
+        height: 80px;
+        padding: 10px;
+
+    }
+    button{
+        margin-top: 50px;
+        display: block;
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        background-color: transparent;
+        border: unset;
+        border-top: 1px solid #000000;
+        cursor: pointer;
+        &:hover{
+            background-color: rgba($color: #000000, $alpha: .1);
+        }
+    }
+}
+
+.img{
+    width: 100%;
+    position: relative;
+    height: 230px;
+    border-bottom: 1px solid #000000;
+}
