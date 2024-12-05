@@ -11,9 +11,6 @@ export function ProductsProvider({ children }) {
             .then(res => res.json())
             .then(fetchedData => {
                 setProducts(fetchedData.data);
-                console.log(fetchedData);
-                
-
             })
             .catch((error) => {
                 console.log(error)

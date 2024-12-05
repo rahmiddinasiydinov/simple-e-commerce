@@ -15,7 +15,6 @@ export default function handler(req, res) {
 
         res.status(200).json({ success: true, data: jsonData, message: "Data saved successfully" });
     } catch (error) {
-        console.error("Error writing to file:", error);
         res.status(500).json({ success: false, message: "Failed to save data" });
     }
 }

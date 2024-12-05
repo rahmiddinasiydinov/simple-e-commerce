@@ -47,7 +47,7 @@ function CategoriesForm() {
         .then((data) => {
           setCategories(data.data);
         })
-        .catch((e) => console.log(e));
+        .catch((e) =>{ });
     else if (currentData.type === "category-edit") {
         fetch("/api/updateCategories", {
         method: "PUT",
@@ -60,7 +60,7 @@ function CategoriesForm() {
         .then((data) => {
           setCategories(data.data);
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {});
     }
   };
   return (

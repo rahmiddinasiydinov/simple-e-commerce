@@ -1,9 +1,12 @@
-import React from 'react'
+"use client"
+import styles from './cart.module.scss'
+import ProductList from "@/components/ProductList/Products";
 
-function Cart() {
+export default function Cart() {
+
   return (
-    <div>Cart</div>
-  )
+    <div className={styles.wrapper}>
+      <ProductList  type="cart"/>
+    </div>
+  );
 }
-
-export default Cart
