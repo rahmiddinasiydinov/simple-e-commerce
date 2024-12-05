@@ -15,6 +15,8 @@ function ProductList({ type = 'products' }) {
       setList(products)
     } else {
       setList(cart)
+      console.log(cart);
+      
     }
   }, [type, products, cart])
 

@@ -7,18 +7,21 @@ export function CartProvider({ children }) {
     useEffect(() => {
         if (typeof window !== 'undefined' && window.localStorage) {
             const currentCart = JSON.parse(localStorage.getItem("cart"));
-            setCart(currentCart | []);
+            setCart(currentCart || []);
         }
     }, [])
+    useEffect(()=>{
+        console.log(cart);
+        
+    },[cart] )
     const updateCart = (newCart) => {
         setCart([...newCart])
-        localStorage.setItem('cart', JSON.stringify(newCart));
         handleSave(newCart)
     }
 
     const handleSave = (newCart) => {
             if (typeof window !== "undefined" && window.localStorage) {
-                localStorage.setItem(cart, JSON.stringify(newCart))
+                localStorage.setItem("cart", JSON.stringify(newCart))
             }
     }
     return <Context.Provider value={{ cart, updateCart }}>{children}</Context.Provider>
