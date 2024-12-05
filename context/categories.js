@@ -11,7 +11,6 @@ export function CategoriesProvider({ children }) {
             .then(res => res.json())
             .then(fetchedData => {
                 setCategories(fetchedData.data);
-                console.log(fetchedData);
                 
 
             })

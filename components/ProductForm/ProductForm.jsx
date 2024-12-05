@@ -11,7 +11,7 @@ function ProductForm() {
 
     const { setModalStatus} = useModalStatusContext();
     const {categories} = useCategoriesContext();
-    console.log(categories)
+    
     const hideMenu = ()=>{
         setModalStatus(false);
         setTimeout(() => {

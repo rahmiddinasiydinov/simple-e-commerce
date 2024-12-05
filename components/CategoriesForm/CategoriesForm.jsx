@@ -43,7 +43,6 @@ function CategoriesForm() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.data) {
             setCategories(data.data);
           }
@@ -59,8 +58,6 @@ function CategoriesForm() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
-          
           if (data.data) {
             setCategories(data.data);
           }
