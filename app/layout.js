@@ -10,6 +10,7 @@ import { CategoriesProvider } from "@/context/categories";
 import { EditDataProvider } from "@/context/editData";
 import { ProductsProvider } from "@/context/product";
 import { CartProvider } from "@/context/cart";
+import { MenuStatusProvider } from "@/context/menu";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
             <ProductsProvider>
               <CartProvider>
                 <EditDataProvider>
+                <MenuStatusProvider>
                   <Modal />
                   <Header />
                   <main>
@@ -48,6 +50,7 @@ export default function RootLayout({ children }) {
                       {children}
                     </div>
                   </main>
+                  </MenuStatusProvider>
                 </EditDataProvider>
               </CartProvider>
             </ProductsProvider>

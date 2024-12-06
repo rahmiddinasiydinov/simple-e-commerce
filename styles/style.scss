@@ -5,6 +5,7 @@
     box-sizing: border-box;
     font-family: sans-serif;
     font-size: 1.6rem;
+    transition: 0;
 }
 
 html{
@@ -32,4 +33,14 @@ main{
 .contents{
     padding: 250px 60px 150px 20px;
     overflow: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    main{
+        display: block;
+    }
+
+    .contents{
+        padding: 90px 10px 30px;
+    }
 }

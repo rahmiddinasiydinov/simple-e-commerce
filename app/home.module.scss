@@ -14,3 +14,9 @@
         color: #000000;
     }
 }
+
+@media only screen and (max-width: 768px) {
+    .wrapper{
+        padding: 20px 10px;
+    }
+}

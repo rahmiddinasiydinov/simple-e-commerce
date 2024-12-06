@@ -1,21 +1,21 @@
-.form{
+.form {
     width: 85%;
     margin: 0 auto;
 }
 
-.label{
+.label {
     font-size: 1.8rem;
     margin-top: 30px;
     display: block;
 }
 
-.label::before{
+.label::before {
     content: "*";
     margin-right: 2px;
     color: #FF0000;
 }
 
-.input{
+.input {
     display: block;
     padding: 10px;
     width: 100%;
@@ -23,13 +23,13 @@
     font-size: 1.8rem;
 }
 
-.buttons{
+.buttons {
     margin-top: 80px;
     display: flex;
     justify-content: space-evenly;
 }
 
-.buttons > button{
+.buttons>button {
     display: block;
     padding: 10px 15px;
     min-width: 150px;
@@ -37,16 +37,23 @@
     border: 1px solid #000000;
 }
 
-.saveBtn{
+.saveBtn {
     background-color: #97FF8F;
 }
 
-.cancelBtn{
+.cancelBtn {
     background-color: #FF8F91;
 }
 
-.textarea{
+.textarea {
     @extend .input;
     max-width: 100%;
     min-width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .buttons {
+        flex-direction: column;
+        row-gap: 20px;
+    }
 }
