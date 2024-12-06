@@ -2,13 +2,26 @@ import { useEditDataContext } from '@/context/editData';
 import { useModalStatusContext } from '@/context/modal';
 import { useProductsContext } from '@/context/product'
 import Image from 'next/image';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./productsTable.module.scss"
+import { useCategoriesContext } from '@/context/categories';
 
 function ProductsTable() {
+    const [list, setList] = useState([]);
     const {products } =useProductsContext();
     const { setModalType, setModalStatus } = useModalStatusContext();
+    const {categories} = useCategoriesContext();
     const { setCurrentData } = useEditDataContext();
+
+    useEffect(() => {
+        const newProductsList = products.map(product => {
+            const category = categories.find( category => category.id == product.categoryId)
+            product.categoryName = category.name;
+            return product;
+        });
+        setList(newProductsList)
+    }, [products, categories])
+
     const handleDelete = (id) => {
         try {
             fetch(`/api/deleteCategories?id=${id}`, {
@@ -45,13 +58,16 @@ function ProductsTable() {
                         Наименование
                     </th>
                     <th className={styles.th}>
+                        Категория
+                    </th>
+                    <th className={styles.th}>
 
                     </th>
                 </tr>
             </thead>
             <tbody className={styles.tbody}>
                 {
-                    products?.map((product, index) => {
+                    list?.map((product, index) => {
                         return <tr className={styles.tr} key={product.id}>
                             <td className={styles.td}>
                                 {index + 1}
@@ -59,7 +75,9 @@ function ProductsTable() {
                             <td className={styles.td}>
                                 {product?.name}
                                 <span className={styles.edited}>{product?.edited ? "(изменено)" : ""}</span>
-
+                            </td>
+                            <td className={styles.td}>
+                                {product.categoryName}
                             </td>
                             <td className={styles.td}>
                                 <button className={styles.button} onClick={() => handleEdit(product.id)}><Image width={20} height={20} src="/images/edit.svg" alt="edit" /></button>
