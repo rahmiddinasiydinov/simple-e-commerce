@@ -1,16 +1,14 @@
-"use client"
-
-import React from 'react';
-import styles from "./categoriesTable.module.scss";
-import Image from 'next/image';
-import { useCategoriesContext } from '@/context/categories';
-import { useModalStatusContext } from '@/context/modal';
 import { useEditDataContext } from '@/context/editData';
+import { useModalStatusContext } from '@/context/modal';
+import { useProductsContext } from '@/context/product'
+import Image from 'next/image';
+import React from 'react'
+import styles from "./productsTable.module.scss"
 
-function CategoriesTable() {
-    const { categories, setCategories } = useCategoriesContext();
-    const { setModalType, setModalStatus } = useModalStatusContext()
-    const { setCurrentData } = useEditDataContext()
+function ProductsTable() {
+    const {products } =useProductsContext();
+    const { setModalType, setModalStatus } = useModalStatusContext();
+    const { setCurrentData } = useEditDataContext();
     const handleDelete = (id) => {
         try {
             fetch(`/api/deleteCategories?id=${id}`, {
@@ -30,9 +28,9 @@ function CategoriesTable() {
 
     const handleEdit = (id) => {
         setModalStatus(true);
-        setModalType("category-edit");
-        const dataToEdit = categories.find(category => category.id === id)
-        setCurrentData({ type: "category-edit", ...dataToEdit })
+        setModalType("product-edit");
+        const dataToEdit = products.find(product => product.id === id)
+        setCurrentData({ type: "product-edit", ...dataToEdit })
 
     }
 
@@ -53,19 +51,19 @@ function CategoriesTable() {
             </thead>
             <tbody className={styles.tbody}>
                 {
-                    categories?.map((category, index) => {
-                        return <tr className={styles.tr} key={category.id}>
+                    products?.map((product, index) => {
+                        return <tr className={styles.tr} key={product.id}>
                             <td className={styles.td}>
                                 {index + 1}
                             </td>
                             <td className={styles.td}>
-                                {category?.name}
-                                <span className={styles.edited}>{category?.edited ? "(изменено)" : ""}</span>
+                                {product?.name}
+                                <span className={styles.edited}>{product?.edited ? "(изменено)" : ""}</span>
 
                             </td>
                             <td className={styles.td}>
-                                <button className={styles.button} onClick={() => handleEdit(category.id)}><Image width={20} height={20} src="/images/edit.svg" alt="edit" /></button>
-                                <button className={styles.button} onClick={() => handleDelete(category.id)}><Image width={20} height={20} src="/images/delete.svg" alt="edit" /></button>
+                                <button className={styles.button} onClick={() => handleEdit(product.id)}><Image width={20} height={20} src="/images/edit.svg" alt="edit" /></button>
+                                <button className={styles.button} onClick={() => handleDelete(product.id)}><Image width={20} height={20} src="/images/delete.svg" alt="edit" /></button>
                             </td>
                         </tr>
                     })
@@ -75,4 +73,4 @@ function CategoriesTable() {
     )
 }
 
-export default CategoriesTable;
+export default ProductsTable

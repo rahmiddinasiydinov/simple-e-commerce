@@ -16,7 +16,7 @@ function CategoriesForm() {
     if (modalType == "category-edit" && isModalOpen) {
       setInput(currentData.name);
     } else setInput("");
-  }, [currentData, modalType]);
+  }, [currentData, modalType, isModalOpen]);
 
   const hideMenu = () => {
     setModalStatus(false);
@@ -33,7 +33,7 @@ function CategoriesForm() {
       setInput("");
     }, 500);
 
-    if (currentData.type === "category")
+    if (currentData.type === "category") {
       fetch("/api/postCategories", {
         method: "POST",
         body: JSON.stringify({ name: input }),
@@ -47,8 +47,8 @@ function CategoriesForm() {
             setCategories(data.data);
           }
         })
-        .catch((e) =>{ });
-    else if (currentData.type === "category-edit") {
+        .catch((e) => {});
+    } else if (currentData.type === "category-edit") {
       fetch("/api/updateCategories", {
         method: "PUT",
         body: JSON.stringify({ id: currentData.id, name: input, edited: true }),
