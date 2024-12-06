@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import styles from './card.module.scss';
+import styles from './product.module.scss';
 import Image from 'next/image';
 import { useCartContext } from '@/context/cart';
 import { useProductsContext } from '@/context/product';
