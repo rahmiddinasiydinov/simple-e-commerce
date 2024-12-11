@@ -1,16 +1,15 @@
 "use client"
-import Head from "next/head";
 import localFont from "next/font/local";
 import "../styles/style.scss";
-import Header from "@/components/Header/Header";
-import Navbar from "@/components/Navbar/Navbar";
-import { ModalStatusProvider } from "@/context/modal";
-import Modal from "@/components/Modal/Modal";
-import { CategoriesProvider } from "@/context/categories";
-import { EditDataProvider } from "@/context/editData";
-import { ProductsProvider } from "@/context/product";
-import { CartProvider } from "@/context/cart";
-import { MenuStatusProvider } from "@/context/menu";
+import { ModalStatusProvider } from "../context/modal";
+import { CategoriesProvider } from "../context/categories";
+import { ProductsProvider } from "../context/product";
+import { CartProvider } from "../context/cart";
+import { EditDataProvider } from "../context/editData";
+import { MenuStatusProvider } from "../context/menu";
+// import Navbar from "@/components/Navbar/Navbar";
+// import Modal from "@/components/Modal/Modal";
+// import Header from "@/components/Header/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,26 +24,24 @@ const geistMono = localFont({
 
 
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }:Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en">
-      <Head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Test Project</title>
-      </Head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        
         <ModalStatusProvider>
           <CategoriesProvider>
             <ProductsProvider>
               <CartProvider>
                 <EditDataProvider>
                 <MenuStatusProvider>
-                  <Modal />
-                  <Header />
+                  {/* <Modal /> */}
+                  {/* <Header /> */}
                   <main>
                     <nav className="navbar">
-                      <Navbar />
+                      {/* <Navbar /> */}
                     </nav>
                     <div className="contents">
                       {children}
