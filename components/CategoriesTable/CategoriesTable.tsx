@@ -32,7 +32,7 @@ function CategoriesTable() {
         setModalStatus(true);
         setModalType("category-edit");
         const dataToEdit = categories.find(category => category.id === id)
-        setCurrentData({ type: "category-edit", ...dataToEdit })
+        setCurrentData(dataToEdit)
 
     }
 

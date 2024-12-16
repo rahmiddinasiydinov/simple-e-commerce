@@ -4,7 +4,7 @@ import { Category } from "../types/categories";
 
 interface EditCategorisDataContextType {
   currentData: Category | undefined;
-  setCurrentData: React.Dispatch<React.SetStateAction<Category>>;
+  setCurrentData: React.Dispatch<React.SetStateAction<Category | undefined>>;
 }
 
 const Context = createContext<EditCategorisDataContextType | undefined>(undefined);
@@ -14,7 +14,7 @@ interface EditDataProviderProps {
 }
 
 export function EditCategorisDataProvider({ children }: EditDataProviderProps) {
-  const [currentData, setCurrentData] = useState<Category >();
+  const [currentData, setCurrentData] = useState<Category>();
 
   return <Context.Provider value={{ currentData, setCurrentData }}>{children}</Context.Provider>;
 }

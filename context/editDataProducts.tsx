@@ -14,7 +14,7 @@ interface EditDataProviderProps {
 }
 
 export function EditProductsDataProvider({ children }: EditDataProviderProps) {
-  const [currentData, setCurrentData] = useState<Product >();
+  const [currentData, setCurrentData] = useState<Product>();
 
   return <Context.Provider value={{ currentData, setCurrentData }}>{children}</Context.Provider>;
 }
