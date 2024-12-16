@@ -1,13 +1,13 @@
 "use client";
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { product } from "../types/products";
+import { Product } from "../types/products";
 
 // Define types for the cart items (adjust based on your cart data)
 
 
 interface CartContextType {
-    cart: product[];
-    updateCart: (newCart: product[]) => void;
+    cart: Product[];
+    updateCart: (newCart: Product[]) => void;
 }
 
 const Context = createContext<CartContextType | undefined>(undefined);
@@ -17,7 +17,7 @@ interface CartProviderProps {
 }
 
 export function CartProvider({ children }: CartProviderProps) {
-    const [cart, setCart] = useState<product[]>([]);
+    const [cart, setCart] = useState<Product[]>([]);
 
     useEffect(() => {
         if (typeof window !== 'undefined' && window.localStorage) {
@@ -26,12 +26,12 @@ export function CartProvider({ children }: CartProviderProps) {
         }
     }, []);
 
-    const updateCart = (newCart: product[]) => {
+    const updateCart = (newCart: Product[]) => {
         setCart([...newCart]);
         handleSave(newCart);
     };
 
-    const handleSave = (newCart: product[]) => {
+    const handleSave = (newCart: Product[]) => {
         if (typeof window !== "undefined" && window.localStorage) {
             localStorage.setItem("cart", JSON.stringify(newCart));
         }

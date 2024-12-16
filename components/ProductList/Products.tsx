@@ -7,7 +7,7 @@ import { useProductsContext } from '../../context/product';
 import { Product } from '../../types/products';
 
 function ProductList({ type = 'products' }) {
-  const [list, setList] = useState<Product[]>([]);
+  const [list, setList] = useState<Product[] | undefined>([]);
   const { cart, updateCart } = useCartContext()
   const { products } = useProductsContext()
 
@@ -20,9 +20,11 @@ function ProductList({ type = 'products' }) {
   }, [type, products, cart])
 
   const onClickProduct = (id) => {
-    if (!cart.some(item => item?.id == id)) {
+    if (!cart?.some(item => item?.id == id)) {
       const chosenItem = products.find(product => product?.id == id);
-      cart.push(chosenItem)
+      if (chosenItem) {
+        cart?.push(chosenItem)
+      }
       updateCart(cart);
     }
   }
@@ -41,7 +43,7 @@ function ProductList({ type = 'products' }) {
 
   return (
     <ul className={styles.list}>
-    {!cart?.length && type==="cart" ? <h2 className={styles.warning}>В корзине ничего нет.</h2> : ""}
+      {!cart?.length && type === "cart" ? <h2 className={styles.warning}>В корзине ничего нет.</h2> : ""}
       {
         list?.map(product => {
           return <li key={product?.id} className={styles.item}>
