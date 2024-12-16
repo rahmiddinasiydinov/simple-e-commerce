@@ -1,25 +1,25 @@
 "use client"
 
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styles from "./navbar.module.scss";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import classNames from 'classnames';
-import { useMenuStatus } from '@/context/menu';
+import { useMenuStatus } from '../../context/menu';
 
-function Navbar() {
+function Navbar():ReactNode {
   const pathname = usePathname();
   const {isOpen, setIsOpen} = useMenuStatus()
   
-  const getLinkClassNames = (localLink) => {
+  const getLinkClassNames = (localLink:string):string => {
     return classNames(styles.link, { [styles.active] : pathname == localLink })
   }
 
-  const getWrapperClassNames = () => {
+  const getWrapperClassNames = ():string => {
     return classNames(styles.wrapper, {[styles.active]: isOpen})
   }
 
-  const onClick = () => {
+  const onClick = ():void => {
     setIsOpen(false);
   }
   return (

@@ -3,14 +3,14 @@
 import React from 'react';
 import styles from "./categoriesTable.module.scss";
 import Image from 'next/image';
-import { useCategoriesContext } from '@/context/categories';
-import { useModalStatusContext } from '@/context/modal';
-import { useEditDataContext } from '@/context/editData';
+import { useCategoriesContext } from '../../context/categories';
+import { useEditCategorisDataContext } from '../../context/editDataCategories';
+import { useModalStatusContext } from '../../context/modal';
 
 function CategoriesTable() {
     const { categories, setCategories } = useCategoriesContext();
     const { setModalType, setModalStatus } = useModalStatusContext()
-    const { setCurrentData } = useEditDataContext()
+    const { setCurrentData } = useEditCategorisDataContext()
     const handleDelete = (id) => {
         try {
             fetch(`/api/deleteCategories?id=${id}`, {
@@ -32,7 +32,7 @@ function CategoriesTable() {
         setModalStatus(true);
         setModalType("category-edit");
         const dataToEdit = categories.find(category => category.id === id)
-        setCurrentData({ type: "category-edit", ...dataToEdit })
+        setCurrentData(dataToEdit)
 
     }
 

@@ -1,11 +1,11 @@
 "use client"
-import { useProductsContext } from "@/context/product";
+import { ReactNode } from 'react';
+import ProductList from '../components/ProductList/Products';
+import { useCartContext } from '../context/cart';
 import styles from './home.module.scss'
-import { useCartContext } from "@/context/cart";
-import ProductList from "@/components/ProductList/Products";
 import Link from "next/link";
 
-export default function Home() {
+export default function Home():ReactNode {
   const { cart } = useCartContext();
   let cartNumber = cart.length || 0;
 

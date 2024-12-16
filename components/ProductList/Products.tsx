@@ -2,11 +2,12 @@
 import React, { useEffect, useState } from 'react';
 import styles from './product.module.scss';
 import Image from 'next/image';
-import { useCartContext } from '@/context/cart';
-import { useProductsContext } from '@/context/product';
+import { useCartContext } from '../../context/cart';
+import { useProductsContext } from '../../context/product';
+import { Product } from '../../types/products';
 
 function ProductList({ type = 'products' }) {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<Product[] | undefined>([]);
   const { cart, updateCart } = useCartContext()
   const { products } = useProductsContext()
 
@@ -19,15 +20,17 @@ function ProductList({ type = 'products' }) {
   }, [type, products, cart])
 
   const onClickProduct = (id) => {
-    if (!cart.some(item => item?.id == id)) {
-      const chosenItem = products.find(product => product.id == id);
-      cart.push(chosenItem)
+    if (!cart?.some(item => item?.id == id)) {
+      const chosenItem = products.find(product => product?.id == id);
+      if (chosenItem) {
+        cart?.push(chosenItem)
+      }
       updateCart(cart);
     }
   }
 
   const onClickCart = (id) => {
-    const newCart = cart.filter(product => product.id != id);
+    const newCart = cart.filter(product => product?.id != id);
     updateCart(newCart);
     setList(newCart)
   }
@@ -40,16 +43,16 @@ function ProductList({ type = 'products' }) {
 
   return (
     <ul className={styles.list}>
-    {!cart?.length && type==="cart" ? <h2 className={styles.warning}>В корзине ничего нет.</h2> : ""}
+      {!cart?.length && type === "cart" ? <h2 className={styles.warning}>В корзине ничего нет.</h2> : ""}
       {
         list?.map(product => {
-          return <li key={product.id} className={styles.item}>
+          return <li key={product?.id} className={styles.item}>
             <div className={styles.img}>
-              <Image fill src={product.photo} alt="image of products" objectFit="cover" />
+              <Image fill src={product?.photo || ''} alt="image of products" objectFit="cover" />
             </div>
-            <h2>{product.name}</h2>
-            <p>{product.desc}</p>
-            <button className={styles.productBtn} onClick={() => onClick(product.id)}>{getButtonText()}</button>
+            <h2>{product?.name}</h2>
+            <p>{product?.desc}</p>
+            <button className={styles.productBtn} onClick={() => onClick(product?.id)}>{getButtonText()}</button>
           </li>
         })
       }

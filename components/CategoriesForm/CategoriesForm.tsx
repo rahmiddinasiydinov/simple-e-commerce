@@ -1,20 +1,20 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./categoriesForm.module.scss";
-import { useModalStatusContext } from "@/context/modal";
-import { useCategoriesContext } from "@/context/categories";
-import { useEditDataContext } from "@/context/editData";
+import { useModalStatusContext } from "../../context/modal";
+import { useCategoriesContext } from "../../context/categories";
+import { useEditCategorisDataContext } from "../../context/editDataCategories";
 
 function CategoriesForm() {
   const { setModalStatus, modalType, isModalOpen } = useModalStatusContext();
   const { setCategories } = useCategoriesContext();
-  const { currentData } = useEditDataContext();
+  const { currentData } = useEditCategorisDataContext();
 
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState<string | undefined>("");
 
   useEffect(() => {
     if (modalType == "category-edit" && isModalOpen) {
-      setInput(currentData.name);
+      setInput(currentData?.name);
     } else setInput("");
   }, [currentData, modalType, isModalOpen]);
 
@@ -33,7 +33,7 @@ function CategoriesForm() {
       setInput("");
     }, 500);
 
-    if (currentData.type === "category") {
+    if (modalType === "category") {
       fetch("/api/postCategories", {
         method: "POST",
         body: JSON.stringify({ name: input }),
@@ -48,10 +48,10 @@ function CategoriesForm() {
           }
         })
         .catch((e) => {});
-    } else if (currentData.type === "category-edit") {
+    } else if (modalType === "category-edit") {
       fetch("/api/updateCategories", {
         method: "PUT",
-        body: JSON.stringify({ id: currentData.id, name: input, edited: true }),
+        body: JSON.stringify({ id: currentData?.id, name: input, edited: true }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -79,7 +79,7 @@ function CategoriesForm() {
           onChange={(e) => setInput(e.target.value)}
           id="name"
           type="text"
-          minLength="3"
+          minLength={3}
           className={styles.input}
           required
         />
