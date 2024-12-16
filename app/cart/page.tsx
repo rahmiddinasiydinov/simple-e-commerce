@@ -1,8 +1,9 @@
 "use client"
+import { ReactNode } from 'react';
+import ProductList from '../../components/ProductList/Products';
 import styles from './cart.module.scss'
-import ProductList from "@/components/ProductList/Products";
 
-export default function Cart() {
+export default function Cart():ReactNode {
 
   return (
     <div className={styles.wrapper}>

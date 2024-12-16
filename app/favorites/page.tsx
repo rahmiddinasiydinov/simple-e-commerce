@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styles from "./favorites.module.scss"
 
-function Favorites() {
+function Favorites():ReactNode {
   return (
     <div className={styles.wrapper}>Избранное</div>
   )

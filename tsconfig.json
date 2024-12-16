@@ -29,7 +29,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "context/editDataProducts.tsx", "app/customhooks/useLocalStorage.tsx"  ],
   "exclude": [
     "node_modules"
   ]

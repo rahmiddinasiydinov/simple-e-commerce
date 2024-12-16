@@ -5,11 +5,13 @@ import { ModalStatusProvider } from "../context/modal";
 import { CategoriesProvider } from "../context/categories";
 import { ProductsProvider } from "../context/product";
 import { CartProvider } from "../context/cart";
-import { EditDataProvider } from "../context/editData";
 import { MenuStatusProvider } from "../context/menu";
-// import Navbar from "@/components/Navbar/Navbar";
+import Navbar from "../components/Navbar/Navbar";
+import Header from "../components/Header/Header";
+import Modal from "../components/Modal/Modal";
+import { EditCategorisDataProvider } from "../context/editDataCategories";
+import { EditProductsDataProvider } from "../context/editDataProducts";
 // import Modal from "@/components/Modal/Modal";
-// import Header from "@/components/Header/Header";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -24,31 +26,33 @@ const geistMono = localFont({
 
 
 
-export default function RootLayout({ children }:Readonly<{
+export default function RootLayout({ children }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        
+
         <ModalStatusProvider>
           <CategoriesProvider>
             <ProductsProvider>
               <CartProvider>
-                <EditDataProvider>
-                <MenuStatusProvider>
-                  {/* <Modal /> */}
-                  {/* <Header /> */}
-                  <main>
-                    <nav className="navbar">
-                      {/* <Navbar /> */}
-                    </nav>
-                    <div className="contents">
-                      {children}
-                    </div>
-                  </main>
-                  </MenuStatusProvider>
-                </EditDataProvider>
+                <EditCategorisDataProvider>
+                  <EditProductsDataProvider>
+                    <MenuStatusProvider>
+                      <Modal />
+                      <Header />
+                      <main>
+                        <nav className="navbar">
+                          <Navbar />
+                        </nav>
+                        <div className="contents">
+                          {children}
+                        </div>
+                      </main>
+                    </MenuStatusProvider>
+                  </EditProductsDataProvider>
+                </EditCategorisDataProvider>
               </CartProvider>
             </ProductsProvider>
           </CategoriesProvider>

@@ -1,11 +1,7 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { Category } from '../types/categories';
 
-interface Category {
-  // Define the properties of a category based on your data structure
-  id: number;
-  name: string;
-  // Add other category properties here
-}
+
 
 interface CategoriesContextType {
   categories: Category[];

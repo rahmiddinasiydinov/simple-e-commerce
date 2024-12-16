@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styles from "./header.module.scss"
 import Image from 'next/image';
-import { useMenuStatus } from '@/context/menu';
-function Header() {
-  const { setIsOpen } = useMenuStatus();
-  const onClick = () => {
+import { useMenuStatus } from '../../context/menu';
+
+function Header():ReactNode {
+  const { setIsOpen } = useMenuStatus ();
+  const onClick = ():void => {
     setIsOpen(state => !state);
   }
   return (

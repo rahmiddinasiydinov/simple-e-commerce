@@ -1,22 +1,23 @@
-import { useEditDataContext } from '@/context/editData';
-import { useModalStatusContext } from '@/context/modal';
-import { useProductsContext } from '@/context/product'
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import styles from "./productsTable.module.scss"
-import { useCategoriesContext } from '@/context/categories';
+import { useCategoriesContext } from '../../context/categories';
+import { useProductsContext } from '../../context/product';
+import { useModalStatusContext } from '../../context/modal';
+import { Product } from '../../types/products';
+import { useEditProductsDataContext } from '../../context/editDataProducts';
 
 function ProductsTable() {
-    const [list, setList] = useState([]);
+    const [list, setList] = useState<Product[]>([]);
     const {products } =useProductsContext();
     const { setModalType, setModalStatus } = useModalStatusContext();
     const {categories} = useCategoriesContext();
-    const { setCurrentData } = useEditDataContext();
+    const { setCurrentData } = useEditProductsDataContext();
 
     useEffect(() => {
         const newProductsList = products.map(product => {
             const category = categories.find( category => category.id == product.categoryId)
-            product.categoryName = category.name;
+            product.categoryName = category?.name;
             return product;
         });
         setList(newProductsList)
@@ -31,7 +32,7 @@ function ProductsTable() {
                 },
             }).then(res => res.json())
                 .then(data => {
-                    setCategories(data.data)
+                    setList(data.data)
                 })
         } catch (error) {
             console.log(error);
@@ -43,7 +44,7 @@ function ProductsTable() {
         setModalStatus(true);
         setModalType("product-edit");
         const dataToEdit = products.find(product => product.id === id)
-        setCurrentData({ type: "product-edit", ...dataToEdit })
+        setCurrentData( dataToEdit )
 
     }
 

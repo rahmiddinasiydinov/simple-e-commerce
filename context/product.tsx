@@ -1,12 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, ReactNode } from 'react';
+import { Product } from '../types/products';
 
-interface Product {
-  // Define the properties of a product based on your data structure
-  id: number;
-  name: string;
-  price: number;
-  // Add other product properties here
-}
 
 interface ProductsContextType {
   products: Product[];

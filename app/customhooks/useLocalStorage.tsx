@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 export function useLocalStorage(key, fallbackValue=[]) {
     const [value, setValue] = useState(fallbackValue);
     useEffect(() => {

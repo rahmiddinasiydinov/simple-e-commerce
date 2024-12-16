@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './modal.module.scss';
-import { useModalStatusContext } from '@/context/modal';
 import classNames from 'classnames';
-import CategoriesForm from '../CategoriesForm/CategoriesForm';
 import ProductForm from '../ProductForm/ProductForm';
+import { useModalStatusContext } from '../../context/modal';
+import CategoriesForm from '../CategoriesForm/CategoriesForm';
 
 function Modal() {
     const { isModalOpen, modalType, setModalStatus, setModalType } = useModalStatusContext();
